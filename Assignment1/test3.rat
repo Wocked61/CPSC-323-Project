@@ -1,0 +1,25 @@
+@
+function multiply (a integer)
+{
+    read a
+	return a * 2 + 15.32;
+}
+@
+	integer b, c, d;
+@
+	{
+		b = 2;
+		c = 3;
+		d = 4;
+		while (b <= 150)
+		{
+			b = b + c;
+			b = c * d;
+			b = d * e;
+			write (multiply(b));
+			b++;
+			c++;
+			d++;
+		}
+	}
+@
