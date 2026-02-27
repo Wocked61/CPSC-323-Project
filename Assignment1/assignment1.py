@@ -1,4 +1,5 @@
 import string
+import os
 
 class Token:
     """
@@ -27,13 +28,13 @@ OPERATORS = {"=", "==", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "+=", "-
 SEPARATORS = {"(", ")", "{", "}", ";", ",", "@"}
 KEYWORDS = {
     "integer", "boolean", "real", "if", "otherwise",
-    "fi", "while", "return", "read", "write"
+    "fi", "while", "return", "read", "write", "function", "true", "false"
 }
 
 
 
 
-def DFSM(lexeme, table, accepting_states, char_to_col):
+def DFSM(lexeme, table, accepting_states, column_function):
     """
     This function evaluates a DFSM for a given lexeme based off the template provided in class.
     
@@ -46,7 +47,7 @@ def DFSM(lexeme, table, accepting_states, char_to_col):
     state = 1
 
     for char in lexeme:
-        column = char_to_col(char)
+        column = column_function(char)
 
         # Check boundary conditions
         if state < 0 or column < 0 or state >= len(table) or column >= len(table[state]):
@@ -57,13 +58,17 @@ def DFSM(lexeme, table, accepting_states, char_to_col):
 
     return state in accepting_states
 
-# Function to determine if a character is an identifier character
+# Function to return the column that identifies the next state based on the current character
 def char_to_col(ch):
-    if ch in LETTERS:
-        return 0
-    if ch in DIGITS or ch == "_":
-        return 1
-    return -1
+    match ch:
+        case ch if ch in LETTERS:
+            return 0
+        case ch if ch in DIGITS:
+            return 1
+        case "_":
+            return 2
+        case _:
+            return -1
 
 def identifier_fsm(source, i):
     """
@@ -96,17 +101,24 @@ def identifier_fsm(source, i):
     # Lexeme is unknown
     return Token("unknown", lexeme), i
 
-# Function to determine if a character is a digit or a dot
-def real_col(ch):
-    if ch in DIGITS:
-        return 0
-    if ch == ".":
-        return 1
-    return -1
+# Function to determine if a character is just an integer
+def int_to_col(ch):
+     match ch:
+        case ch if ch in DIGITS:
+            return 0
+        case _:
+            return -1
 
-# Function to determine if a character is a digit
-def int_col(ch):
-    return 0 if ch in DIGITS else -1
+# Function to determine if a character is a real number
+def real_to_col(ch):
+    match ch:
+        case ch if ch in DIGITS:
+            return 0
+        case ".":
+            return 1
+        case _:
+            return -1
+
 
 def number_fsm(source, i):
     """
@@ -142,12 +154,12 @@ def number_fsm(source, i):
     ]
 
    
-    # Try integer DFSM
-    if DFSM(lexeme, int_table, {2}, int_col):
+    # Use integer DFSM table
+    if DFSM(lexeme, int_table, {2}, int_to_col):
         return Token("integer", lexeme), i
 
-    # Try real DFSM
-    if DFSM(lexeme, real_table, {4}, real_col):
+    # Use real number DFSM table
+    if DFSM(lexeme, real_table, {4}, real_to_col):
         return Token("real", lexeme), i
 
     # Lexeme is unknown
@@ -162,7 +174,7 @@ def skip_comment(source, i):
         i (int): The current index in the source string where the comment starts.
     """
 
-    # Skip the opening "/*" and then continue until we find the closing "*/"
+    # Skip the opening "/*" and then continue until the closing "*/" is found
     if source[i:i+2] == "/*":
         i += 2
         while i < len(source) - 1 and source[i:i+2] != "*/":
@@ -238,12 +250,17 @@ def do_lexer(filename):
         if token.type == "EOF":
             break
 
-    # Print the tokens in a formatted table
-    print(f"{'Token':<12} {'Lexeme'}")
-    print(f"{'-'*12} {'-'*6}")
+    # Create output text file
+    base, _ = os.path.splitext(filename)
+    out_filename = f"{base}_output.txt"
+    out_file = open(out_filename, 'w')
+    
+    out_file.write(f"{'Token':<12} {'Lexeme'}\n")
+    out_file.write(f"{'-'*12} {'-'*6}\n")
     for t in tokens:
-        print(t)
-
+        out_file.write(f"{t}\n")
+    out_file.close()
+    print(f"Output written to {out_filename}")
 
 # Main loop to run the lexer on user-provided files until they choose to quit
 if __name__ == "__main__":
