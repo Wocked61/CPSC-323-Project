@@ -1,0 +1,15 @@
+Token        Lexeme
+------------ ------
+separator    @
+separator    @
+separator    @
+identifier   x
+operator     =
+integer      5
+operator     +
+integer      2
+operator     *
+integer      3
+separator    ;
+separator    @
+EOF          

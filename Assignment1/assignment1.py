@@ -243,6 +243,7 @@ def do_lexer(filename):
     file_index = 0
     tokens = []
 
+
     # Loop through the source code and call the lexer function until we reach the end of the file (EOF)
     while True:
         token, file_index = lexer(source, file_index)
@@ -261,6 +262,8 @@ def do_lexer(filename):
         out_file.write(f"{t}\n")
     out_file.close()
     print(f"Output written to {out_filename}")
+    return tokens       
+
 
 # Main loop to run the lexer on user-provided files until they choose to quit
 if __name__ == "__main__":
@@ -272,3 +275,5 @@ if __name__ == "__main__":
             do_lexer(filename)
         except FileNotFoundError:
             print(f"Error: File '{filename}' not found.")
+
+
