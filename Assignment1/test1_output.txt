@@ -1,0 +1,21 @@
+Token        Lexeme
+------------ ------
+separator    @
+separator    @
+keyword      integer
+identifier   a
+separator    ;
+separator    @
+separator    {
+identifier   a
+operator     =
+integer      1
+separator    ;
+keyword      write
+separator    (
+identifier   a
+separator    )
+separator    ;
+separator    }
+separator    @
+EOF          

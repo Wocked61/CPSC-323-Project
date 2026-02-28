@@ -6,11 +6,13 @@ function multiply (a integer)
 }
 @
 	integer b, c, d;
+	boolean e;
 @
 	{
 		b = 2;
 		c = 3;
 		d = 4;
+		e = false;
 		while (b <= 150)
 		{
 			b = b + c;
