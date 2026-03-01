@@ -1,5 +1,8 @@
 @
 @
+integer x;
 @
-x = (5 + 2) * 3;
+x = 0;
+while (x < 3) x = x + 1;
+if (x == 3) write(x); otherwise write(0); fi
 @

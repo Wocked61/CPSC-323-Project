@@ -1,4 +1,4 @@
-# ====== PARSER FOR ASSIGNMENT 2 ======
+# ====== PARSER FOR ASSIGNMENT 2 (Reorganized by Rule #) ======
 
 from assignment1 import do_lexer
 
@@ -6,6 +6,8 @@ tokens = []
 current = 0
 
 
+
+# Helper functions
 def current_token():
     return tokens[current]
 
@@ -32,11 +34,7 @@ def match(expected_lexeme=None, expected_type=None):
     advance()
 
 
-
-# Grammar Rule Functions
-
-
-# R1
+# R1. <Rat26S>
 def Rat26S():
     match(expected_lexeme='@')
     OptFunctionDefinitions()
@@ -47,11 +45,16 @@ def Rat26S():
     match(expected_lexeme='@')
 
 
-# R2
+
+# R2. <Opt Function Definitions>
 def OptFunctionDefinitions():
     if current_token().lexeme == "function":
         FunctionDefinitions()
+    # else empty
 
+
+
+# R3. <Function Definitions>
 
 def FunctionDefinitions():
     Function()
@@ -59,36 +62,102 @@ def FunctionDefinitions():
         Function()
 
 
-# placeholder (expand later)
+
+# R4. <Function>
+# function <Identifier> ( <Opt Parameter List> ) <Opt Declaration List> <Body>
+
 def Function():
     match(expected_lexeme="function")
     match(expected_type="identifier")
     match(expected_lexeme="(")
+    OptParameterList()
     match(expected_lexeme=")")
+    OptDeclarationList()
     Body()
 
 
+
+# R5. <Opt Parameter List>
+def OptParameterList():
+    if current_token().type == "identifier":
+        ParameterList()
+    # else empty
+
+
+# R6. <Parameter List>
+def ParameterList():
+    Parameter()
+    while current_token().lexeme == ",":
+        match(expected_lexeme=",")
+        Parameter()
+
+
+# R7. <Parameter>
+# <IDs> <Qualifier>
+def Parameter():
+    IDs()
+    Qualifier()
+
+
+# R8. <Qualifier>
+# integer | boolean | real
+def Qualifier():
+    if current_token().lexeme in ["integer", "boolean", "real"]:
+        advance()
+    else:
+        error("Expected type qualifier (integer/boolean/real)")
+
+
+# R9. <Body>
+# { <Statement List> }
 def Body():
     match(expected_lexeme="{")
     StatementList()
     match(expected_lexeme="}")
 
 
-# placeholder
+# R10. <Opt Declaration List>
 def OptDeclarationList():
-    pass
+    if current_token().lexeme in ["integer", "boolean", "real"]:
+        DeclarationList()
+    # else empty
 
 
-# placeholder
+# R11. <Declaration List>
+# <Declaration> ; { <Declaration> ; }
+def DeclarationList():
+    Declaration()
+    match(expected_lexeme=";")
+    while current_token().lexeme in ["integer", "boolean", "real"]:
+        Declaration()
+        match(expected_lexeme=";")
+
+
+# R12. <Declaration>
+# <Qualifier> <IDs>
+def Declaration():
+    Qualifier()
+    IDs()
+
+
+# R13. <IDs>
+# <Identifier> | <Identifier> , <IDs>
+def IDs():
+    match(expected_type="identifier")
+    while current_token().lexeme == ",":
+        match(expected_lexeme=",")
+        match(expected_type="identifier")
+
+
+# R14. <Statement List>
+# <Statement> | <Statement> <Statement List>
 def StatementList():
-    # if next token is an end-of-list token, treat as empty list
-    if current_token().lexeme in ['}', '@', 'fi', 'otherwise']:
-        return
     Statement()
     while current_token().lexeme not in ['}', '@', 'fi', 'otherwise']:
         Statement()
 
 
+# R15. <Statement>
 def Statement():
     token = current_token()
 
@@ -110,107 +179,27 @@ def Statement():
         error("Invalid statement")
 
 
+# R16. <Compound>
+# { <Statement List> }
+def Compound():
+    match(expected_lexeme="{")
+    StatementList()
+    match(expected_lexeme="}")
+
+
+# R17. <Assign>
+# <Identifier> = <Expression> ;
 def Assign():
     match(expected_type="identifier")
     match(expected_lexeme="=")
     Expression()
     match(expected_lexeme=";")
 
-def Expression():
-    Term()
-    while current_token().lexeme in ['+', '-']:
-        advance()
-        Term()
 
-def Term():
-    Factor()
-    while current_token().lexeme in ['*', '/']:
-        advance()
-        Factor()
-
-def Factor():
-    if current_token().lexeme == '-':
-        advance()
-        Primary()
-    else:
-        Primary()
-
-def Primary():
-    token = current_token()
-
-    if token.type == "identifier":
-        advance()
-    elif token.type == "integer":
-        advance()
-    elif token.type == "real":
-        advance()
-    elif token.lexeme == "(":
-        advance()
-        Expression()
-        match(expected_lexeme=")")
-    elif token.lexeme in ["true", "false"]:
-        advance()
-    else:
-        error("Invalid primary")
-
-
-    def Compound():
-    match(expected_lexeme="{")
-    StatementList()
-    match(expected_lexeme="}")
-
-    def Return():
-    match(expected_lexeme="return")
-    if current_token().lexeme != ";":
-        Expression()
-    match(expected_lexeme=";")
-
-    def Print():
-    match(expected_lexeme="write")
-    match(expected_lexeme="(")
-    Expression()
-    match(expected_lexeme=")")
-    match(expected_lexeme=";")
-
-
-    def IDs():
-    match(expected_type="identifier")
-    while current_token().lexeme == ",":
-        match(expected_lexeme=",")
-        match(expected_type="identifier")
-
-
-        def Scan():
-    match(expected_lexeme="read")
-    match(expected_lexeme="(")
-    IDs()
-    match(expected_lexeme=")")
-    match(expected_lexeme=";")
-
-
-    def Relop():
-    if current_token().lexeme in ["==", "!=", ">", "<", "<=", "=>"]:
-        advance()
-    else:
-        error("Invalid relational operator")
-
-
-        def Condition():
-    Expression()
-    Relop()
-    Expression()
-
-
-    def While():
-    match(expected_lexeme="while")
-    match(expected_lexeme="(")
-    Condition()
-    match(expected_lexeme=")")
-    Statement()
-
-
-
-    def If():
+# R18. <If>
+# if ( <Condition> ) <Statement> fi
+# if ( <Condition> ) <Statement> otherwise <Statement> fi
+def If():
     match(expected_lexeme="if")
     match(expected_lexeme="(")
     Condition()
@@ -223,9 +212,123 @@ def Primary():
 
     match(expected_lexeme="fi")
 
+
+# R19. <Return>
+# return ; | return <Expression> ;
+def Return():
+    match(expected_lexeme="return")
+    if current_token().lexeme != ";":
+        Expression()
+    match(expected_lexeme=";")
+
+
+# R20. <Print>
+# write ( <Expression> ) ;
+def Print():
+    match(expected_lexeme="write")
+    match(expected_lexeme="(")
+    Expression()
+    match(expected_lexeme=")")
+    match(expected_lexeme=";")
+
+
+# R21. <Scan>
+# read ( <IDs> ) ;
+def Scan():
+    match(expected_lexeme="read")
+    match(expected_lexeme="(")
+    IDs()
+    match(expected_lexeme=")")
+    match(expected_lexeme=";")
+
+
+# R22. <While>
+# while ( <Condition> ) <Statement>
+def While():
+    match(expected_lexeme="while")
+    match(expected_lexeme="(")
+    Condition()
+    match(expected_lexeme=")")
+    Statement()
+
+
+# R23. <Condition>
+# <Expression> <Relop> <Expression>
+def Condition():
+    Expression()
+    Relop()
+    Expression()
+
+
+# R24. <Relop>
+# == | != | > | < | <= | =>
+def Relop():
+    if current_token().lexeme in ["==", "!=", ">", "<", "<=", "=>"]:
+        advance()
+    else:
+        error("Invalid relational operator")
+
+
+# R25. <Expression>
+def Expression():
+    Term()
+    while current_token().lexeme in ['+', '-']:
+        advance()
+        Term()
+
+
+# R26. <Term>
+def Term():
+    Factor()
+    while current_token().lexeme in ['*', '/']:
+        advance()
+        Factor()
+
+
+# R27. <Factor>
+def Factor():
+    if current_token().lexeme == '-':
+        advance()
+        Primary()
+    else:
+        Primary()
+
+
+# R28. <Primary>
+# Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+def Primary():
+    token = current_token()
+
+    if token.type == "identifier":
+        advance()
+        if current_token().lexeme == "(":
+            match(expected_lexeme="(")
+            IDs()
+            match(expected_lexeme=")")
+        return
+
+    if token.type == "integer":
+        advance()
+        return
+
+    if token.type == "real":
+        advance()
+        return
+
+    if token.lexeme == "(":
+        advance()
+        Expression()
+        match(expected_lexeme=")")
+        return
+
+    if token.lexeme in ["true", "false"]:
+        advance()
+        return
+
+    error("Invalid primary")
+
+
 # MAIN
-
-
 if __name__ == "__main__":
     filename = input("Enter source filename: ")
 

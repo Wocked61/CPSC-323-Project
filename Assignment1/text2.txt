@@ -1,5 +1,8 @@
 @
 @
+integer x, y;
 @
-x = 5 + 2 * 3;
+read(x, y);
+write(x + y);
+return;
 @
