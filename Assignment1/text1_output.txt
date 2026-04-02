@@ -3,9 +3,15 @@ Token        Lexeme
 separator    @
 separator    @
 separator    @
+keyword      if
+separator    (
 identifier   x
 operator     =
-integer      5
-separator    ;
+integer      3
+separator    )
+identifier   x
+operator     =
+integer      1
+keyword      fi
 separator    @
 EOF          
