@@ -24,7 +24,7 @@ def advance():
 
 def error(msg):
     token = current_token()
-    print(f"Syntax Error: {msg}. Found '{token.lexeme}' of type '{token.type}'")
+    write_output(f"Syntax Error: {msg}. Found '{token.lexeme}' of type '{token.type}'")
     exit()
 
 

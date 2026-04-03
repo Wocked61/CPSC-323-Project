@@ -24,7 +24,7 @@ LETTERS = string.ascii_letters
 DIGITS = string.digits
  
 # List of operators, separators, and keywords
-OPERATORS = {"=", "==", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "+=", "-=", "*=", "/=", "++", "--", "&&", "||", "!"}
+OPERATORS = {"=", "==", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "+=", "-=", "*=", "/=", "++", "--", "&&", "||", "!", "=>"}
 SEPARATORS = {"(", ")", "{", "}", ";", ",", "@"}
 KEYWORDS = {
     "integer", "boolean", "real", "if", "otherwise",
