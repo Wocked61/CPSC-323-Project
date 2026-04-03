@@ -1,0 +1,16 @@
+@
+function double(n integer)
+integer result;
+{
+    result = n * 2;
+    return result;
+}
+@
+integer x, y;
+@
+{
+    x = 7;
+    y = double(x);
+    write(y);
+}
+@

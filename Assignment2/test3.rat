@@ -1,0 +1,38 @@
+@
+function add(a integer, b integer)
+integer sum;
+{
+    sum = a + b;
+    return sum;
+}
+
+function max(a integer, b integer)
+{
+    if (a > b)
+        return a;
+    otherwise
+        return b;
+    fi
+}
+@
+integer x, y, z, best;
+@
+{
+    x = 3;
+    y = 10;
+    z = add(x, y);
+
+    if (z > 12)
+        best = z;
+    otherwise
+        best = 0;
+    fi
+
+    while (x < y)
+    {
+        x = x + 1;
+    }
+
+    write(best);
+}
+@

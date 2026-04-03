@@ -1,0 +1,42 @@
+<Rat26S> -> @ <Opt Function Definitions> @ <Opt Declaration List> @ <Statement List> @
+Token: separator    Lexeme: @
+<Opt Function Definitions> -> <Function Definitions> | ε
+Token: separator    Lexeme: @
+<Opt Declaration List> -> <Declaration List> | ε
+<Declaration List> -> <Declaration> ; { <Declaration> ; }
+<Declaration> -> <Qualifier> <IDs>
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: @
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Compound> -> { <Statement List> }
+Token: separator    Lexeme: {
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 5
+Token: separator    Lexeme: ;
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Print> -> write ( <Expression> ) ;
+Token: keyword    Lexeme: write
+Token: separator    Lexeme: (
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+Syntax Valid

@@ -1,0 +1,268 @@
+<Rat26S> -> @ <Opt Function Definitions> @ <Opt Declaration List> @ <Statement List> @
+Token: separator    Lexeme: @
+<Opt Function Definitions> -> <Function Definitions> | ε
+<Function Definitions> -> <Function> | <Function> <Function Definitions>
+<Function> -> function <Identifier> ( <Opt Parameter List> ) <Opt Declaration List> <Body>
+Token: keyword    Lexeme: function
+Token: identifier    Lexeme: add
+Token: separator    Lexeme: (
+<Opt Parameter List> -> <Parameter List> | ε
+<Parameter List> -> <Parameter> | <Parameter> , <Parameter List>
+<Parameter> -> <IDs> <Qualifier>
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: a
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+Token: separator    Lexeme: ,
+<Parameter> -> <IDs> <Qualifier>
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: b
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+Token: separator    Lexeme: )
+<Opt Declaration List> -> <Declaration List> | ε
+<Declaration List> -> <Declaration> ; { <Declaration> ; }
+<Declaration> -> <Qualifier> <IDs>
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: sum
+Token: separator    Lexeme: ;
+<Body> -> { <Statement List> }
+Token: separator    Lexeme: {
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: sum
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: +
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: b
+Token: separator    Lexeme: ;
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Return> -> return ; | return <Expression> ;
+Token: keyword    Lexeme: return
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: sum
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+<Function> -> function <Identifier> ( <Opt Parameter List> ) <Opt Declaration List> <Body>
+Token: keyword    Lexeme: function
+Token: identifier    Lexeme: max
+Token: separator    Lexeme: (
+<Opt Parameter List> -> <Parameter List> | ε
+<Parameter List> -> <Parameter> | <Parameter> , <Parameter List>
+<Parameter> -> <IDs> <Qualifier>
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: a
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+Token: separator    Lexeme: ,
+<Parameter> -> <IDs> <Qualifier>
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: b
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+Token: separator    Lexeme: )
+<Opt Declaration List> -> <Declaration List> | ε
+<Body> -> { <Statement List> }
+Token: separator    Lexeme: {
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<If> -> if ( <Condition> ) <Statement> fi | if ( <Condition> ) <Statement> otherwise <Statement> fi
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+<Condition> -> <Expression> <Relop> <Expression>
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: a
+<Relop> -> == | != | > | < | <= | =>
+Token: operator    Lexeme: >
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: b
+Token: separator    Lexeme: )
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Return> -> return ; | return <Expression> ;
+Token: keyword    Lexeme: return
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: a
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Return> -> return ; | return <Expression> ;
+Token: keyword    Lexeme: return
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: b
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+<Opt Declaration List> -> <Declaration List> | ε
+<Declaration List> -> <Declaration> ; { <Declaration> ; }
+<Declaration> -> <Qualifier> <IDs>
+<Qualifier> -> integer | boolean | real
+Token: keyword    Lexeme: integer
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: z
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: best
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: @
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Compound> -> { <Statement List> }
+Token: separator    Lexeme: {
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 3
+Token: separator    Lexeme: ;
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: y
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 10
+Token: separator    Lexeme: ;
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: add
+Token: separator    Lexeme: (
+<IDs> -> <Identifier> | <Identifier> , <IDs>
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<If> -> if ( <Condition> ) <Statement> fi | if ( <Condition> ) <Statement> otherwise <Statement> fi
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+<Condition> -> <Expression> <Relop> <Expression>
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: z
+<Relop> -> == | != | > | < | <= | =>
+Token: operator    Lexeme: >
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 12
+Token: separator    Lexeme: )
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: z
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 0
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<While> -> while ( <Condition> ) <Statement>
+Token: keyword    Lexeme: while
+Token: separator    Lexeme: (
+<Condition> -> <Expression> <Relop> <Expression>
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: x
+<Relop> -> == | != | > | < | <= | =>
+Token: operator    Lexeme: <
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: )
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Compound> -> { <Statement List> }
+Token: separator    Lexeme: {
+<Statement List> -> <Statement> | <Statement> <Statement List>
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Assign> -> <Identifier> = <Expression> ;
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: =
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: +
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: integer    Lexeme: 1
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+<Statement> -> <Compound> | <Assign> | <If> | <Return> | <Print> | <Scan> | <While>
+<Print> -> write ( <Expression> ) ;
+Token: keyword    Lexeme: write
+Token: separator    Lexeme: (
+<Expression> -> <Term> | <Term> + <Expression> | <Term> - <Expression>
+<Term> -> <Factor> | <Factor> * <Term> | <Factor> / <Term>
+<Factor> -> - <Primary> | <Primary>
+<Primary> -> Identifier | Integer | Real | ( <Expression> ) | true | false | Identifier ( <IDs> )
+Token: identifier    Lexeme: best
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+Syntax Valid
