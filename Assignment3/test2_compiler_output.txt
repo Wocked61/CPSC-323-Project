@@ -1,0 +1,101 @@
+Token: separator    Lexeme: @
+Token: keyword    Lexeme: integer
+Token: identifier    Lexeme: a
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: b
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: c
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: @
+Token: separator    Lexeme: {
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 5
+Token: separator    Lexeme: ;
+Token: identifier    Lexeme: b
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 12
+Token: separator    Lexeme: ;
+Token: identifier    Lexeme: c
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: *
+Token: identifier    Lexeme: b
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: c
+Token: operator    Lexeme: >
+Token: integer    Lexeme: 50
+Token: separator    Lexeme: )
+Token: identifier    Lexeme: c
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: c
+Token: operator    Lexeme: -
+Token: integer    Lexeme: 10
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+Token: identifier    Lexeme: c
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 0
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+Token: keyword    Lexeme: while
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: <
+Token: integer    Lexeme: 10
+Token: separator    Lexeme: )
+Token: separator    Lexeme: {
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: a
+Token: operator    Lexeme: +
+Token: integer    Lexeme: 1
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: keyword    Lexeme: write
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: c
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+Syntax Valid
+Assembly Instructions:
+1: PUSHI 5
+2: POPM 10000
+3: PUSHI 12
+4: POPM 10001
+5: PUSHM 10000
+6: PUSHM 10001
+7: M
+8: POPM 10002
+9: PUSHM 10002
+10: PUSHI 50
+11: GRT
+12: JMPZ 18
+13: PUSHM 10002
+14: PUSHI 10
+15: S
+16: POPM 10002
+17: JMP 20
+18: PUSHI 0
+19: POPM 10002
+20: LABEL
+21: PUSHM 10000
+22: PUSHI 10
+23: LES
+24: JMPZ 30
+25: PUSHM 10000
+26: PUSHI 1
+27: A
+28: POPM 10000
+29: JMP 20
+30: PUSHM 10002
+31: SOUT
+Symbol Table:
+Identifier           Memory Address  Type      
+a                    10000           integer   
+b                    10001           integer   
+c                    10002           integer   

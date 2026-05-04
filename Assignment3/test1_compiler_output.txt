@@ -1,0 +1,30 @@
+Token: separator    Lexeme: @
+Token: keyword    Lexeme: integer
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: @
+Token: separator    Lexeme: {
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 4
+Token: operator    Lexeme: +
+Token: integer    Lexeme: 3
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: write
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+Syntax Valid
+Assembly Instructions:
+1: PUSHI 4
+2: PUSHI 3
+3: A
+4: POPM 10000
+5: PUSHM 10000
+6: SOUT
+Symbol Table:
+Identifier           Memory Address  Type      
+x                    10000           integer   

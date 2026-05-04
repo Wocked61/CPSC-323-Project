@@ -1,0 +1,19 @@
+@
+integer a, b, c;
+@
+{
+    a = 5;
+    b = 12;
+    c = a * b;
+    if (c > 50)
+        c = c - 10;
+    otherwise
+        c = 0;
+    fi
+    while (a < 10)
+    {
+        a = a + 1;
+    }
+    write(c);
+}
+@

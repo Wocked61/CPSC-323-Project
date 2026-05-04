@@ -1,0 +1,158 @@
+Token: separator    Lexeme: @
+Token: keyword    Lexeme: integer
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: z
+Token: separator    Lexeme: ,
+Token: identifier    Lexeme: best
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: boolean
+Token: identifier    Lexeme: flag
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: @
+Token: separator    Lexeme: {
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 2
+Token: separator    Lexeme: ;
+Token: identifier    Lexeme: y
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 3
+Token: separator    Lexeme: ;
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: =
+Token: integer    Lexeme: 10
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: x
+Token: operator    Lexeme: <
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: )
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: y
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: x
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+Token: keyword    Lexeme: while
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: >
+Token: integer    Lexeme: 0
+Token: separator    Lexeme: )
+Token: separator    Lexeme: {
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: -
+Token: integer    Lexeme: 1
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: z
+Token: operator    Lexeme: ==
+Token: integer    Lexeme: 5
+Token: separator    Lexeme: )
+Token: identifier    Lexeme: flag
+Token: operator    Lexeme: =
+Token: keyword    Lexeme: true
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+Token: identifier    Lexeme: flag
+Token: operator    Lexeme: =
+Token: keyword    Lexeme: false
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+Token: separator    Lexeme: }
+Token: keyword    Lexeme: if
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: flag
+Token: operator    Lexeme: ==
+Token: keyword    Lexeme: true
+Token: separator    Lexeme: )
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: *
+Token: integer    Lexeme: 2
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: otherwise
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: =
+Token: identifier    Lexeme: best
+Token: operator    Lexeme: +
+Token: integer    Lexeme: 1
+Token: separator    Lexeme: ;
+Token: keyword    Lexeme: fi
+Token: keyword    Lexeme: write
+Token: separator    Lexeme: (
+Token: identifier    Lexeme: best
+Token: separator    Lexeme: )
+Token: separator    Lexeme: ;
+Token: separator    Lexeme: }
+Token: separator    Lexeme: @
+Syntax Valid
+Assembly Instructions:
+1: PUSHI 2
+2: POPM 10000
+3: PUSHI 3
+4: POPM 10001
+5: PUSHI 10
+6: POPM 10002
+7: PUSHM 10000
+8: PUSHM 10001
+9: LES
+10: JMPZ 14
+11: PUSHM 10001
+12: POPM 10003
+13: JMP 16
+14: PUSHM 10000
+15: POPM 10003
+16: LABEL
+17: PUSHM 10002
+18: PUSHI 0
+19: GRT
+20: JMPZ 35
+21: PUSHM 10002
+22: PUSHI 1
+23: S
+24: POPM 10002
+25: PUSHM 10002
+26: PUSHI 5
+27: EQU
+28: JMPZ 32
+29: PUSHI 1
+30: POPM 10004
+31: JMP 34
+32: PUSHI 0
+33: POPM 10004
+34: JMP 16
+35: PUSHM 10004
+36: PUSHI 1
+37: EQU
+38: JMPZ 44
+39: PUSHM 10003
+40: PUSHI 2
+41: M
+42: POPM 10003
+43: JMP 48
+44: PUSHM 10003
+45: PUSHI 1
+46: A
+47: POPM 10003
+48: PUSHM 10003
+49: SOUT
+Symbol Table:
+Identifier           Memory Address  Type      
+x                    10000           integer   
+y                    10001           integer   
+z                    10002           integer   
+best                 10003           integer   
+flag                 10004           boolean   

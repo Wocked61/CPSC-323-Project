@@ -1,0 +1,30 @@
+@
+integer x, y, z, best;
+boolean flag;
+@
+{
+    x = 2;
+    y = 3;
+    z = 10;
+    if (x < y)
+        best = y;
+    otherwise
+        best = x;
+    fi
+    while (z > 0)
+    {
+        z = z - 1;
+        if (z == 5)
+            flag = true;
+        otherwise
+            flag = false;
+        fi
+    }
+    if (flag == true)
+        best = best * 2;
+    otherwise
+        best = best + 1;
+    fi
+    write(best);
+}
+@
