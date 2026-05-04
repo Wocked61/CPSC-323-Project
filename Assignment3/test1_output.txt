@@ -1,6 +1,7 @@
 Token        Lexeme
 ------------ ------
 separator    @
+separator    @
 keyword      integer
 identifier   x
 separator    ;

@@ -1,4 +1,5 @@
 @
+@
 integer x, y, z, best;
 boolean flag;
 @

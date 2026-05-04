@@ -83,7 +83,8 @@ def emit(opcode, operand=None):
 # R1. <Rat26S>
 def Rat26S():
     if PRINT_PRODUCTIONS:
-        write_output("<Rat26S> -> @ <Opt Declaration List> @ <Statement List> @")
+        write_output("<Rat26S> -> @ <Opt Function Definitions> @ <Opt Declaration List> @ <Statement List> @")
+    match(expected_lexeme='@')
     match(expected_lexeme='@')
     OptDeclarationList()
     match(expected_lexeme='@')

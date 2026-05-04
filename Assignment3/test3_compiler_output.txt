@@ -1,4 +1,5 @@
 Token: separator    Lexeme: @
+Token: separator    Lexeme: @
 Token: keyword    Lexeme: integer
 Token: identifier    Lexeme: x
 Token: separator    Lexeme: ,
